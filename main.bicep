@@ -1,22 +1,20 @@
 //scope
 targetScope = 'resourceGroup'
 //Storage account for deployment scripts
-param rgName string
-param location string
-
+var location = resourceGroup().location
+param ipaddress string
 
 //Storage account for deployment scripts
 module storage './storage-account.bicep' = {
   name: 'deploymentScriptStorage'
-  scope: resourceGroup(rgName)
   params: {
     location: location
+    ipaddress: ipaddress
   }
 }
 
 module vnet './virtual_network.bicep' = {
   name: 'vnet'
-  scope: resourceGroup(rgName)
   params:{
     virtualNetworkName: 'vnet01'
     vNetIpPrefix: '10.1.0.0/24'
@@ -28,7 +26,6 @@ module vnet './virtual_network.bicep' = {
 
 module vm './virtual_machine.bicep' = {
   name: 'vm'
-  scope: resourceGroup(rgName)
   params:{
     name: 'ubuntu20'
     location: location
@@ -52,7 +49,6 @@ module vm './virtual_machine.bicep' = {
 
 module bastion 'bastionhost.bicep' = {
   name: 'bastion'
-  scope: resourceGroup(rgName)
   params:{
     location: location
     bastionHostName: 'bastionhost'

@@ -23,7 +23,7 @@ resource vmnic 'Microsoft.Network/networkInterfaces@2020-11-01' = {
             id: subnetId
           }
           privateIPAllocationMethod: 'Dynamic'
-          privateIPAddressVersion:'IPv6'
+          privateIPAddressVersion:'IPv4'
         }
       }
     ]

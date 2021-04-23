@@ -1,4 +1,6 @@
 param location string
+param ipaddress string
+
 resource stg 'Microsoft.Storage/storageAccounts@2021-02-01' = {
   name: 'sadscript${uniqueString(resourceGroup().id)}'
   location: location
@@ -14,7 +16,7 @@ resource stg 'Microsoft.Storage/storageAccounts@2021-02-01' = {
       ipRules:[
         {
           action:'Allow'
-          value: '123.222.139.72'
+          value: ipaddress
         }
       ]
     }
