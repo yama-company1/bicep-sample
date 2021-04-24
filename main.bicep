@@ -3,6 +3,9 @@ targetScope = 'resourceGroup'
 //Storage account for deployment scripts
 var location = resourceGroup().location
 param ipaddress string
+var vNetIpPrefix  = '10.1.0.0/24'
+var defaultSubnetIpPrefix = '10.1.0.0/27'
+var bastionSubnetIpPrefix = '10.1.0.32/27'
 
 //Storage account for deployment scripts
 module storage './storage-account.bicep' = {
@@ -17,12 +20,12 @@ module vnet './virtual_network.bicep' = {
   name: 'vnet'
   params:{
     virtualNetworkName: 'vnet01'
-    vNetIpPrefix: '10.1.0.0/24'
-    defaultSubnetIpPrefix: '10.1.0.0/27'
+    vNetIpPrefix: vNetIpPrefix
+    defaultSubnetIpPrefix: defaultSubnetIpPrefix
     location: location
+    bastionSubnetIpPrefix: bastionSubnetIpPrefix
   }
 }
-
 
 module vm './virtual_machine.bicep' = {
   name: 'vm'
@@ -53,7 +56,8 @@ module bastion 'bastionhost.bicep' = {
     location: location
     bastionHostName: 'bastionhost'
     virtualNetworkName: vnet.outputs.vnetname
-    bastionSubnetIpPrefix: '10.1.0.32/27'
+    bastionSubnetIpPrefix: bastionSubnetIpPrefix
+    ipaddress: ipaddress
   }
   dependsOn:[
     [
