@@ -11,6 +11,8 @@ https://github.com/Azure/bicep/blob/main/docs/installing.md#windows-installer
   xxx.xxx.xxx.xxx -> Your IP Address.</br>
   xxx(vmpassword)(At least 12 characters (uppercase, lowercase, and numbers)) </br>
   xxxx (sshPublicKey) </br>
+  xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx(UserObjectID) </br>
+  xxxxx (keyvaultName)
   - option</br>
   vmuser -> Your choice Virtual Machine User ID.</br>
   Standard_D4s_v3 -> Your choice Virtual Machine Size. </br>
@@ -27,12 +29,15 @@ https://github.com/Azure/bicep/blob/main/docs/installing.md#windows-installer
     },
     "vmuser": {
       "value": "adminuser"
-    },    
-    "vmpassword": {
-      "value" : "xxx"
+    },
+    "UserObjectID": {
+      "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
     },
     "sshPublicKey": {
       "value": "xxxx"
+    },
+    "keyvaultName": {
+      "value": "xxxxx"
     }
   }
 }

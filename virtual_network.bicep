@@ -52,4 +52,5 @@ resource IngressTrafficeFromBastoinNSG 'Microsoft.Network/networkSecurityGroups@
 }
 
 output vnetname string = virtualNetwork.name
-output subnetid string = subNet.id
+output subnetId string = subNet.id
+

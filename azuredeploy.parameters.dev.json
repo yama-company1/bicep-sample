@@ -11,8 +11,14 @@
     "vmuser": {
       "value": "adminuser"
     },
+    "UserObjectID": {
+      "value": "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+    },
     "sshPublicKey": {
       "value": "xxxx"
+    },
+    "keyvaultName": {
+      "value": "xxxxx"
     }
   }
 }

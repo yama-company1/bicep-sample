@@ -6,6 +6,8 @@ param ipaddress string
 param vmsize string
 param vmuser string
 param sshPublicKey string
+param keyvaultName string
+param UserObjectID string
 var vNetIpPrefix  = '192.168.0.0/24'
 var defaultSubnetIpPrefix = '192.168.0.0/27'
 var bastionSubnetIpPrefix = '192.168.0.32/27'
@@ -36,7 +38,7 @@ module vm './virtual_machine.bicep' = {
     name: 'ubuntu20'
     location: location
     vmSize: vmsize
-    subnetId: vnet.outputs.subnetid
+    subnetId: vnet.outputs.subnetId
     offer: '0001-com-ubuntu-server-focal'
     publisher: 'canonical'
     sku: '20_04-lts'
@@ -65,6 +67,20 @@ module bastion 'bastionhost.bicep' = {
     [
       vnet
     ]
+  ]
+}
+
+module keyvault 'keyvalut.bicep' = {
+  name: 'keyvault'
+  params:{
+    ipaddress: ipaddress
+    keyvalutName: keyvaultName
+    location: location
+    tenantId: subscription().tenantId
+    objectId: UserObjectID
+  }
+  dependsOn:[
+    vnet
   ]
 }
 
