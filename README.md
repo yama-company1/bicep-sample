@@ -49,6 +49,7 @@ ssh-keygen `
     -m PEM `
     -t rsa `
     -b 4096 `
+    -o `
     -C "foo@sample.jpn.com" `
     -f .\private_key `
     -N passphrase
@@ -150,7 +151,7 @@ az deployment group create --resource-group %resourceGroupName% --template-file 
 ### STEP 3 Upload ssh private key(powershell)
 1. replace to Key Vault name from from azuredeploy.parameters.dev.json
 ```
-$keyVaultName = "sukamsmcjp0509" #keyvaultName from azuredeploy.parameters.dev.json
+$keyVaultName = "xxxxx" #keyvaultName from azuredeploy.parameters.dev.json
 $keyVault = Get-AzKeyVault -VaultName ${keyVaultName}
 ```
 2. set secret name xxxx-> your secret name
